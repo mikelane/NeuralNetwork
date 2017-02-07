@@ -101,14 +101,15 @@ class NeuralNetwork:
     def feed_forward(self, x):
         """
         Forward propagate an instance through the network and return a list of the activations of the hidden
-        and output layers.
+        and output layers. Note: in python 3, the @ is matrix multiply (__matmul__). Wherever you see this
+        in the code, it will be the equivalent of using a numpy dot() function.
         :param x: numpy ndarray of the instance attributes with a bias as the 0th index. The shape must be
                   (1, number of attributes)
         :return: List of numpy arrays of shape (1, number of layer values).
         """
         results = []
         if len(self.weights) == 1:  # No hidden layers, so no bias required
-            results.append(expit(x @ self.weights[0]))
+            results.append(expit(x @ self.weights[0])) # TODO make sure having no hidden layers works or take this out
         else:  # at least 1 hidden layer
             # Calculate the first hidden layer activations and include the bias.
             results.append(np.insert(expit(x @ self.weights[0]), 0, 1.0, axis=1))
@@ -262,6 +263,7 @@ class NeuralNetwork:
                 end='',
                 flush=True)
         start = datetime.now()
+
         for epoch in range(number_of_epochs):
             # TODO add in shuffling of the input data
             self.train_network()
