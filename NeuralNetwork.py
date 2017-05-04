@@ -380,8 +380,8 @@ if __name__ == '__main__':
 
 
     # Load the data
-    X_train, y_train = load_data('~/data/mnist_train.csv')
-    X_test, y_test = load_data('~/data/mnist_test.csv')
+    X_train, y_train = load_data('https://pjreddie.com/media/files/mnist_train.csv')
+    X_test, y_test = load_data('https://pjreddie.com/media/files/mnist_test.csv')
 
     nn20 = NeuralNetwork(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test,
                          number_of_inputs=784, number_of_classes=10, hidden_layers_sizes=[20])
